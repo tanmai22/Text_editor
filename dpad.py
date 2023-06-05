@@ -9,7 +9,7 @@ import random
 
 main_application=tk.Tk()
 main_application.geometry('1200x800')
-main_application.title("Devansh's Text Editor")
+main_application.title("Text Editor")
 
 
 ######################   main menu   ############### ############################
@@ -271,12 +271,13 @@ def take_speech():
     m = sr.Microphone()
     with m as source: # set listening device to microphone
         read_text(text = 'Please say the message you would like to the editor!')
-        r.pause_threshold = 2 # delay two second from program start before listening
+        # r.pause_threshold = 2 # delay two second from program start before listening
         audio= r.listen(source)
     try:
         query = r.recognize_google(audio, language='en-UK') #listen to audio
         query = text_formatter(query)
     except Exception:
+        print(Exception)
         error = random.choice(errors)
         read_text(text = error)
         query = take_speech()
